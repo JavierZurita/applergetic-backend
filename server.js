@@ -15,7 +15,7 @@ connect();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use('/alergias', alergiasRoutes);
+app.use('/', alergiasRoutes);
 app.use('/user', userRoutes);
 app.use('/productos', productoRoutes)
 
