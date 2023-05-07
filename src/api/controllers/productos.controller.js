@@ -29,4 +29,22 @@ getProductosByBarcode = async(req, res) => {
     }
 }
 
-module.exports = {getProductos, getProductosById};
+const postProducto = async (req, res) => {
+    try {
+      const { name, alergias, barcode, image } = req.body;
+  
+      const nuevoProducto = new Productos({
+        name,
+        alergias,
+        barcode,
+        image
+      });
+      const productoGuardado = await nuevoProducto.save();
+      res.status(201).json(productoGuardado);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+      console.log("FALLO AL CREAR PRODUCTO", error);
+    }
+  };
+
+module.exports = {getProductos, getProductosById, getProductosByBarcode, postProducto};

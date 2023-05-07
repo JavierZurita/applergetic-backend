@@ -12,7 +12,8 @@ const userSchema = new Schema(
         contactEmail: {type: String},
         contactNumber: {type: Number},
         company: {type: String},
-        alergias: [{type: Schema.Types.ObjectId, ref: "alergia"}]
+        alergias: [{type: Schema.Types.ObjectId, ref: "alergia"}],
+        diario: [{type: Schema.Types.ObjectId, ref: "producto"}]
     }
 )
 

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const {connect} = require('./src/utils/database');
 
@@ -15,7 +16,7 @@ app.use((req, res , next) => {
     res.header('Access-Control-Allow-Method', 'POST, GET, DELETE, PUT, PATCH'); //Metodos que permitimos en la API
     res.header('Access-Control-Allow-Credentials', 'true'); //Permita la conexión con credenciales
     res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500'); 
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); 
     next(); //con el next pasamos a lo siguiente
 })
 
