@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", getProductos);
 router.get("/:id", getProductosById);
-router.get("/:barcode", getProductosByBarcode);
+router.get("/barcode/:barcode", getProductosByBarcode);
 router.post("/", postProducto);
 
 module.exports = router;

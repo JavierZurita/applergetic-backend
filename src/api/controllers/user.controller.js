@@ -42,6 +42,23 @@ const register = async (req,res) => {
         return res.status(500).json(error)
     }
 }
+
+const getUserByEmail = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const user = await User.findOne({ email }).populate("alergias");
+
+    if (user) {
+      res.status(200).json({ user });
+    } else {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+}
+
 const getUserData = async (req, res) => {
     try {
       const {id} = req.params;
@@ -58,7 +75,7 @@ const getUserData = async (req, res) => {
 
   const updateUserData = async (req, res) => {
     try {
-        const userId = req.user.id;
+        const userId = req.params.id;
         const user = await User.findById(userId);
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
@@ -77,6 +94,7 @@ const getUserData = async (req, res) => {
   
       res.json(updatedUser);
     } catch (error) {
+      console.log(error);
       res.status(500).json({ message: 'Error al actualizar los datos del usuario' });
     }
   };
@@ -110,4 +128,4 @@ const getUserData = async (req, res) => {
 // }
 
 // module.exports = {login, register, getAlergias, updateAlergias};
-module.exports = {login, register, getUserData, updateUserData};
+module.exports = {login, register, getUserByEmail , getUserData, updateUserData};
