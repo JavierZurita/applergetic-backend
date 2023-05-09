@@ -46,7 +46,7 @@ const register = async (req,res) => {
 const getUserByEmail = async (req, res) => {
   try {
     const { email } = req.params;
-    const user = await User.findOne({ email }).populate("alergias");
+    const user = await User.findOne({ email }).populate("alergias").populate("diario");
 
     if (user) {
       res.status(200).json({ user });

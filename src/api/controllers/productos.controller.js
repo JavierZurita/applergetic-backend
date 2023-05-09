@@ -21,8 +21,8 @@ const getProductosById = async(req,res) => {
 
 getProductosByBarcode = async(req, res) => {
     try {
-        const {barCode} = req.params;
-        const producto = await Productos.findOne({barcode: barCode});
+        const {barcode} = req.params;
+        const producto = await Productos.findOne({barcode});
         return res.status(200).json(producto);
     } catch (error) {
         return res.status(500).json(error);
